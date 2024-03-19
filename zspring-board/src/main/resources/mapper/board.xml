@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BoardDao">
+	<!-- 
+		xml문서안에 내용 중
+		- PCDATA : xml
+		- CDATA : xml이 아닌 일반 문자열
+		SQL문에 대해 CDATA인 경우
+	 -->
+	<select id="findAll" resultType="com.example.demo.entity.Board">
+		<![CDATA[
+			select * from	
+				(select rownum as rown, b.* from
+					(select * from board order by bno desc) b
+				where rownum<=#{endRownum})
+			where rown>#{startRownum}
+		]]>
+	</select>
+</mapper>

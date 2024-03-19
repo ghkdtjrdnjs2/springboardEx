@@ -16,10 +16,22 @@ public class BoardDaoTest {
 	private BoardDao boardDao;
 	
 	// 테스트에서 사용하는 @Transactional은 자동으로 rollback
-	@Transactional
-	@Test
+	//@Transactional
+	//@Test
 	public void saveTest() {
 		Board board = new Board(null,"aaa","bbb","ccc",null);
 		assertEquals(1L, boardDao.save(board));
+	}
+	//@Test
+	public void 게시판초기화() {
+		for(int i=0; i<123; i++) {
+			Board b = new Board(null,i+"번째글", i+"번째글", "Spring", null);
+			boardDao.save(b);
+		}
+	}
+	
+	@Test
+	public void findAllTest() {
+		assertEquals(10L, boardDao.findAll(10L, 20L).size());
 	}
 }
