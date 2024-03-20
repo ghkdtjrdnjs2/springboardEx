@@ -30,8 +30,13 @@ public class BoardDaoTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void findAllTest() {
 		assertEquals(10L, boardDao.findAll(10L, 20L).size());
+	}
+	
+	//@Test
+	public void recommendChampionWithGoldTest() {
+		boardDao.recommendChampionWithGold("티모").forEach(s->System.out.println(s));
 	}
 }

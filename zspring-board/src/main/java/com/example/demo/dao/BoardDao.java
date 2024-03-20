@@ -1,9 +1,11 @@
 package com.example.demo.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.entity.Board;
 
@@ -14,4 +16,8 @@ public interface BoardDao {
 	
 	public List<Board> findAll(Long startRownum, Long endRownum);
 	
+	public List<Map<String, Object>> recommendChampionWithGold(String name);
+	
+	@Select("select count(bno) from board")
+	public Long count();
 }

@@ -16,4 +16,15 @@
 			where rown>#{startRownum}
 		]]>
 	</select>
+	<select id="recommendChampionWithGold" resultType="map">
+	<![CDATA[
+	select * from(
+    	select other.name as name, round(avg(other.gold)) as gold from lol other join lol choice
+    	on other.gameid=choice.gameid
+    	where choice.name=#{name}
+    	and choice.side!=other.side and choice.lane=other.lane
+    	group by other.name order by 2 desc)
+	where rownum<=5
+	]]>
+	</select>
 </mapper>
